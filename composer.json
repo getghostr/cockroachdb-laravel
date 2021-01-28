@@ -1,0 +1,41 @@
+{
+    "name": "getghostr/cockroachdb-laravel",
+    "description": "Simple CockroachDB driver for Laravel 6+",
+    "keywords": [
+        "getghostr",
+        "cockroachdb",
+        "eloquent",
+        "cockroachdb-laravel",
+        "laravel"
+    ],
+    "homepage": "https://github.com/getghostr/cockroachdb-laravel",
+    "readme": "README.md",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ghostr",
+            "email": "info@ghostr.io"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/database": "^6.0|^7.0|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ghostr\\Cockroach\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ghostr\\Cockroach\\CockroachServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
