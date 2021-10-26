@@ -7,13 +7,7 @@ use Illuminate\Database\Query\Grammars\PostgresGrammar;
 
 class CockroachGrammar extends PostgresGrammar
 {
-    /**
-     * Compile an update statement with joins or limit into SQL.
-     *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @param  array  $values
-     * @return string
-     */
+    /** {@inheritDoc} */
     protected function compileUpdateWithJoinsOrLimit(Builder $query, array $values)
     {
         $table = $this->wrapTable($query->from);
@@ -27,12 +21,7 @@ class CockroachGrammar extends PostgresGrammar
         return "update {$table} set {$columns} where {$this->wrap('rowid')} in ({$selectSql})";
     }
 
-    /**
-     * Compile a delete statement with joins or limit into SQL.
-     *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @return string
-     */
+    /** {@inheritDoc} */
     protected function compileDeleteWithJoinsOrLimit(Builder $query)
     {
         $table = $this->wrapTable($query->from);

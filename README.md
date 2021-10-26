@@ -40,6 +40,23 @@ Head over to your `config/database.php` and add the following to your connection
 ],
 ```
 
+## Special features
+
+### Index stored columns
+This package adds support for [index stored columns](https://www.cockroachlabs.com/docs/stable/indexes.html#storing-columns) 
+<br>They can be declared in migrations like so:
+```php
+Schema::table('my_table', function (Blueprint $table) {
+    // Single stored column
+    $table->index('col1')->storing('col2');
+    
+    // Multiple stored columns
+    $table->index('col1')->storing(['col2', 'col3'])
+})
+```
+
+**NOTE**: Index name generation is unaffected by stored columns
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
