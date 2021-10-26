@@ -8,13 +8,21 @@ use Ghostr\Cockroach\Schema\Grammars\CockroachGrammar as SchemaGrammar;
 
 class CockroachConnection extends PostgresConnection
 {
-    /** {@inheritDoc} */
+    /**
+     * Get the default query grammar instance.
+     *
+     * @return QueryGrammar
+     */
     protected function getDefaultQueryGrammar()
     {
         return $this->withTablePrefix(new QueryGrammar);
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the default schema grammar instance.
+     *
+     * @return SchemaGrammar
+     */
     protected function getDefaultSchemaGrammar()
     {
         return $this->withTablePrefix(new SchemaGrammar);

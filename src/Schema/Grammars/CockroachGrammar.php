@@ -9,11 +9,7 @@ use Illuminate\Support\Fluent;
 
 class CockroachGrammar extends PostgresGrammar
 {
-    /**
-     * Compile a plain index key command.
-     *
-     * @return string
-     */
+    /** {@inheritDoc} */
     public function compileIndex(Blueprint $blueprint, Fluent $command)
     {
         return sprintf('create index %s on %s%s (%s)%s',
