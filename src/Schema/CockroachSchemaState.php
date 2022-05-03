@@ -27,9 +27,9 @@ class CockroachSchemaState extends PostgresSchemaState
 
         $this->append($this->compileSchema($connection));
 
-        $this->files->prepend($this->compileSessionVars($connection));
+        $this->prepend($this->compileSessionVars($connection));
 
-        $this->files->append($this->compileMigrationsTableInsert($connection));
+        $this->append($this->compileMigrationsTableInsert($connection));
     }
 
     /**
@@ -40,11 +40,13 @@ class CockroachSchemaState extends PostgresSchemaState
         return str(
             collect($connection->select("SHOW ENUMS"))
                 ->map(fn($v) => str("CREATE TYPE $v->name AS ENUM (")
-                    ->append(str($v->values)
-                        ->substr(1, -1)
-                        ->explode(',')
-                        ->map(fn($v) => "'$v'")
-                        ->implode(', '))
+                    ->append(
+                        str($v->values)
+                            ->substr(1, -1)
+                            ->explode(',')
+                            ->map(fn($v) => "'$v'")
+                            ->implode(', ')
+                    )
                     ->append(')')
                 )
                 ->implode(";\n")
